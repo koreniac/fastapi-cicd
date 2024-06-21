@@ -23,7 +23,7 @@ steps:
   - '-t'
   - 'gcr.io/$PROJECT_ID/$REPO_NAME:$BRANCH_NAME-$SHORT_SHA'
   - '.'
-  
+
 # This step pushes the image to Container Registry
 
 - name: 'gcr.io/cloud-builders/docker'
@@ -32,7 +32,7 @@ steps:
   - 'push'
   - 'gcr.io/$PROJECT_ID/$REPO_NAME:$BRANCH_NAME-$SHORT_SHA'
 
-# Deploy image to Cloud Run Google Cloud 
+# Deploy image to Cloud Run Google Cloud (asia-southeast1 )
 - name: 'gcr.io/cloud-builders/gcloud'
   id : Deploy to Cloud Run
   args:
@@ -42,7 +42,7 @@ steps:
   - '--image'
   - 'gcr.io/$PROJECT_ID/$REPO_NAME:$BRANCH_NAME-$SHORT_SHA'
   - '--region'
-  - asia-southeast1 
+  - us-central1
   - '--platform'
   - 'managed'
   - '--allow-unauthenticated'
